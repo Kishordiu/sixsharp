@@ -1,47 +1,37 @@
 # SIXSHARP
 
-> **Quantitative intelligence for multi-asset research and backtesting.**
+![Cinematic hero](https://capsule-render.vercel.app/api?type=rect&color=0:10100C,100:2A2114&height=230&text=SIXSHARP&fontColor=F3F3EE&fontSize=40&fontAlignY=38&desc=QUANTITATIVE%20RESEARCH%20%2F%20BACKTESTING&descColor=999991&descSize=12&descAlignY=66&animation=fadeIn)
 
-SIXSHARP is a quantitative research and backtesting platform created for the QUANTEX Hackathon. It explores rigorous browser-based strategy testing while making quantitative concepts accessible through a polished interface.
+> **QUANTITATIVE RESEARCH / BACKTESTING.**
 
-## Core capabilities
-- T+1 execution model designed to avoid look-ahead bias
-- Position sizing and capital constraints
-- Slippage and transaction-cost modelling
-- SMA, EMA, RSI, Bollinger Bands and MACD
-- Volatility/regime analysis
-- Asynchronous parameter sweeps
-- Tamil-language accessibility
-- Beginner and Pro presentation modes
+## THE PREMISE
 
-## Architecture
-**Client:** React · TypeScript · Vite
+SIXSHARP is a quantitative research and backtesting platform built around the idea that a strategy interface should make its execution assumptions visible rather than hide them behind a return number.
 
-**UI:** Tailwind CSS · Framer Motion · Radix UI
+## THE EXPERIENCE
 
-**Charts:** Lightweight Charts · Recharts
+**SIXSHARP is a quantitative research and backtesting platform built around the idea that a strategy interface should make its execution assumptions visible rather than hide them behind a return number.**
 
-**Backend:** Node.js · Express
+## THE SYSTEM
 
-**Data/Auth:** Supabase
+Prevent look-ahead bias. | Model costs before celebrating returns. | Give the researcher both Beginner and Pro views.
 
-**Testing:** Vitest · Playwright
+## THE STACK
 
-## Security
-API credentials are proxied through the backend rather than exposed in the browser. Supabase Row-Level Security is used for persisted strategy data.
+The client is React/TypeScript with Lightweight Charts and Recharts. A Node/Express server provides the secure API boundary, while Supabase stores strategy data. The engine models T+1 execution, position sizing, capital limits, slippage, transaction costs, indicators and parameter sweeps.
 
-## Local development
-~~~bash
-npm install
-cd client && npm install
-cd ../server && npm install
-npm run dev
-~~~
+## RUN
 
-Configure credentials using the provided environment template. Never commit private API keys.
+```bash
+Quant research / hackathon prototype
+```
 
-## Status
-**Quant research / hackathon prototype**
+## PROJECT STATE
 
-## Author
-**K. Kishor Kumar** · [GitHub @Kishordiu](https://github.com/Kishordiu)
+**React · TypeScript · Vite · Node.js · Express · Supabase · Lightweight Charts · Recharts · Framer Motion · Vitest · Playwright**
+
+This README intentionally distinguishes implemented behaviour from future integrations so the project can evolve without overstating what exists today.
+
+---
+
+<p align="center"><strong>K. KISHOR KUMAR</strong><br><sub>ENGINEERING / PRODUCT / SYSTEMS</sub></p>
