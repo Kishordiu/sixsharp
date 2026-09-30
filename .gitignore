@@ -37,3 +37,7 @@ playwright-report/
 
 # Misc
 *.tsbuildinfo
+
+# Agent / editor workspace artifacts
+.agents/
+.aider-desk/
