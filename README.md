@@ -1,81 +1,65 @@
 # SIXSHARP
 
-**Quantitative multi-asset research and backtesting.**
+![Cinematic hero](https://capsule-render.vercel.app/api?type=rect&color=0:10100C,100:2A2114&height=230&text=SIXSHARP&fontColor=F3F3EE&fontSize=40&fontAlignY=38&desc=QUANTITATIVE%20RESEARCH%20%2F%20BACKTESTING&descColor=999991&descSize=12&descAlignY=66&animation=fadeIn)
 
-SIXSHARP brings market-data access, strategy experiments, risk metrics and a browser-based research workspace together. Its engineering goal is to make backtest assumptions visible instead of presenting a return figure without context.
+> **Quantitative research / backtesting.**
 
-## What it covers
+SIXSHARP is a quantitative research and backtesting platform built around a core principle: execution assumptions should be visible instead of hidden behind a headline return.
 
-- Historical multi-asset market-data access through the API server
-- Technical indicators and strategy evaluation
-- Portfolio returns, volatility, Sharpe ratio and drawdown metrics
-- Correlation analysis and parameter experiments
-- A separate server boundary for market-data and AI-provider credentials
+## WHAT IT EXPLORES
 
-See [the feature matrix](hackathon-matrix.md) and [architecture notes](architecture_structure.md) for implementation/file references. Treat market data and backtest results as research outputs, not investment advice.
+- Multi-asset market data for research workflows
+- SMA/EMA, momentum and mean-reversion strategy experiments
+- Returns, volatility, Sharpe ratio, drawdown and correlation analysis
+- Transaction-cost, slippage, position-sizing and execution assumptions
+- An AI research interface behind a server-side API boundary
 
-## Repository layout
+Read [the architecture](architecture_structure.md) and [the feature matrix](hackathon-matrix.md) for the intended system boundaries and implementation map. Treat strategy results as research estimates, not investment advice or a guarantee of future returns.
 
-- `client/` — React, TypeScript and Vite interface
-- `server/` — Node.js/Express API for market data and AI requests
-- `supabase/` — database/auth assets and SQL configuration
+## ARCHITECTURE
 
-## Run locally
+The repository separates a React/Vite client from a Node/Express API. The client runs on port 5173 and proxies `/api` to the API server on port 3001 during local development. The server loads its private configuration from the repository-root `.env`.
 
-**Requirements:** Node.js 20+ and npm.
+## RUN LOCALLY
 
-### 1. Configure the API server
+Requirements: Node.js and npm. Use **two terminals** from the repository root.
 
-From the repository root:
+First, configure the server:
 
 ```bash
 cp .env.example .env
 ```
 
-Edit the root `.env` with your own keys. Start the server in terminal one:
+Edit `.env` and provide the credentials you actually need for the integrations you intend to test. Never put these server-only values in client environment variables.
+
+**Terminal 1 — API server**
 
 ```bash
-cd server
-npm ci
-npm run dev
+npm ci --prefix server
+npm run dev --prefix server
 ```
 
-The server defaults to port `3001`; its health endpoint is `http://localhost:3001/api/health`.
-
-### 2. Configure the frontend
-
-In terminal two, from the repository root:
+**Terminal 2 — web client**
 
 ```bash
-cp client/.env.example client/.env
-cd client
-npm ci
-npm run dev
+cp client/.env.example client/.env.local
+npm ci --prefix client
+npm run dev --prefix client
 ```
 
-Vite prints the frontend URL (configured for port `5173`).
+Open `http://localhost:5173`. For a production client build, run `npm run build --prefix client`. For client linting, run `npm run lint --prefix client`.
 
-## Environment and security
+## ENVIRONMENT AND SECURITY
 
-The root `.env.example` is for the **server only**. The separate `client/.env.example` contains browser variables:
+- Root `.env.example` is for the server only. It includes placeholders for provider credentials and the Supabase service-role key.
+- `client/.env.example` contains browser-facing variables. Any `VITE_*` value is visible in the built client and must never contain a service-role key, password or private provider token.
+- Keep `.env` and `.env.local` files untracked. Test Supabase access control and RLS policies before using real data.
 
-- `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_PUBLISHABLE_KEY`
-- `VITE_API_URL`
+## PROJECT STATE
 
-Anything prefixed with `VITE_` can be visible to users in the built frontend. Use only a public/publishable Supabase key there. Never place `SUPABASE_SERVICE_ROLE_KEY`, `FEATHERLESS_API_KEY`, or other private credentials in the client environment or frontend code. Keep Supabase Row Level Security policies enabled and tested.
+**React · TypeScript · Vite · Node.js · Express · Supabase · Lightweight Charts · Recharts · Playwright**
 
-## Quality checks
+The repository distinguishes implemented behaviour from planned integrations. Run the build and relevant tests against the current commit before relying on a feature.
 
-```bash
-cd client
-npm run build
-npm run lint
-npx playwright test
-```
-
-Run the checks against the current commit before treating a feature as verified.
-
-## Stack
-
-React · TypeScript · Vite · Node.js · Express · Supabase · Yahoo Finance integration · Featherless AI · Lightweight Charts · Recharts · Playwright
+---
+Maintained by [K. Kishor Kumar](https://github.com/Kishordiu).
