@@ -29,3 +29,8 @@ dist-ssr
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Local environment values (keep .env.example tracked)
+.env
+.env.*
+!.env.example
