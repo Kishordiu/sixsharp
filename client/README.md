@@ -1,32 +1,39 @@
-# React + TypeScript + Vite
+# SIXSHARP — web client
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React and TypeScript frontend for the SIXSHARP quantitative research workspace. The API server lives in the sibling `server/` directory.
 
-Currently, two official plugins are available:
+## Run from the repository root
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Create the local client configuration:
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+cp client/.env.example client/.env.local
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Fill in the Supabase project URL and **public anon/publishable key**. Values prefixed by `VITE_` are embedded in the built frontend, so never put a service-role key or private provider token in this file.
+
+Install and start the client:
+
+```bash
+npm ci --prefix client
+npm run dev --prefix client
+```
+
+Start the API separately in a second terminal from the repository root:
+
+```bash
+cp .env.example .env
+npm ci --prefix server
+npm run dev --prefix server
+```
+
+Fill in only the server credentials you actually need in the root `.env`. The client is available at `http://localhost:5173`, and its `/api` development proxy targets port 3001.
+
+## Checks
+
+```bash
+npm run build --prefix client
+npm run lint --prefix client
+```
+
+Playwright tests live in `client/tests/`. They may require a running application and installed browser binaries; run them against the current commit before reporting a verified result.
