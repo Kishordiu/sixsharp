@@ -1,37 +1,81 @@
 # SIXSHARP
 
-![Cinematic hero](https://capsule-render.vercel.app/api?type=rect&color=0:10100C,100:2A2114&height=230&text=SIXSHARP&fontColor=F3F3EE&fontSize=40&fontAlignY=38&desc=QUANTITATIVE%20RESEARCH%20%2F%20BACKTESTING&descColor=999991&descSize=12&descAlignY=66&animation=fadeIn)
+**Quantitative multi-asset research and backtesting.**
 
-> **QUANTITATIVE RESEARCH / BACKTESTING.**
+SIXSHARP brings market-data access, strategy experiments, risk metrics and a browser-based research workspace together. Its engineering goal is to make backtest assumptions visible instead of presenting a return figure without context.
 
-## THE PREMISE
+## What it covers
 
-SIXSHARP is a quantitative research and backtesting platform built around the idea that a strategy interface should make its execution assumptions visible rather than hide them behind a return number.
+- Historical multi-asset market-data access through the API server
+- Technical indicators and strategy evaluation
+- Portfolio returns, volatility, Sharpe ratio and drawdown metrics
+- Correlation analysis and parameter experiments
+- A separate server boundary for market-data and AI-provider credentials
 
-## THE EXPERIENCE
+See [the feature matrix](hackathon-matrix.md) and [architecture notes](architecture_structure.md) for implementation/file references. Treat market data and backtest results as research outputs, not investment advice.
 
-**SIXSHARP is a quantitative research and backtesting platform built around the idea that a strategy interface should make its execution assumptions visible rather than hide them behind a return number.**
+## Repository layout
 
-## THE SYSTEM
+- `client/` — React, TypeScript and Vite interface
+- `server/` — Node.js/Express API for market data and AI requests
+- `supabase/` — database/auth assets and SQL configuration
 
-Prevent look-ahead bias. | Model costs before celebrating returns. | Give the researcher both Beginner and Pro views.
+## Run locally
 
-## THE STACK
+**Requirements:** Node.js 20+ and npm.
 
-The client is React/TypeScript with Lightweight Charts and Recharts. A Node/Express server provides the secure API boundary, while Supabase stores strategy data. The engine models T+1 execution, position sizing, capital limits, slippage, transaction costs, indicators and parameter sweeps.
+### 1. Configure the API server
 
-## RUN
+From the repository root:
 
 ```bash
-Quant research / hackathon prototype
+cp .env.example .env
 ```
 
-## PROJECT STATE
+Edit the root `.env` with your own keys. Start the server in terminal one:
 
-**React · TypeScript · Vite · Node.js · Express · Supabase · Lightweight Charts · Recharts · Framer Motion · Vitest · Playwright**
+```bash
+cd server
+npm ci
+npm run dev
+```
 
-This README intentionally distinguishes implemented behaviour from future integrations so the project can evolve without overstating what exists today.
+The server defaults to port `3001`; its health endpoint is `http://localhost:3001/api/health`.
 
----
+### 2. Configure the frontend
 
-<p align="center"><strong>K. KISHOR KUMAR</strong><br><sub>ENGINEERING / PRODUCT / SYSTEMS</sub></p>
+In terminal two, from the repository root:
+
+```bash
+cp client/.env.example client/.env
+cd client
+npm ci
+npm run dev
+```
+
+Vite prints the frontend URL (configured for port `5173`).
+
+## Environment and security
+
+The root `.env.example` is for the **server only**. The separate `client/.env.example` contains browser variables:
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_PUBLISHABLE_KEY`
+- `VITE_API_URL`
+
+Anything prefixed with `VITE_` can be visible to users in the built frontend. Use only a public/publishable Supabase key there. Never place `SUPABASE_SERVICE_ROLE_KEY`, `FEATHERLESS_API_KEY`, or other private credentials in the client environment or frontend code. Keep Supabase Row Level Security policies enabled and tested.
+
+## Quality checks
+
+```bash
+cd client
+npm run build
+npm run lint
+npx playwright test
+```
+
+Run the checks against the current commit before treating a feature as verified.
+
+## Stack
+
+React · TypeScript · Vite · Node.js · Express · Supabase · Yahoo Finance integration · Featherless AI · Lightweight Charts · Recharts · Playwright
