@@ -1,65 +1,64 @@
-# SIXSHARP
+<div align="center">
+  <img src="./assets/hero-banner.svg" alt="SIXSHARP — Quantitative Research & Backtesting" width="100%" />
+</div>
 
-![Cinematic hero](https://capsule-render.vercel.app/api?type=rect&color=0:10100C,100:2A2114&height=230&text=SIXSHARP&fontColor=F3F3EE&fontSize=40&fontAlignY=38&desc=QUANTITATIVE%20RESEARCH%20%2F%20BACKTESTING&descColor=999991&descSize=12&descAlignY=66&animation=fadeIn)
+<p align="center">
+  <a href="https://diufoundry.online"><img alt="DIU Foundry" src="https://img.shields.io/badge/DIU_FOUNDRY-STUDIO-0A1826?style=for-the-badge&logoColor=6BC6CE&labelColor=060A0F" /></a>&nbsp;
+  <img alt="Quantitative Research" src="https://img.shields.io/badge/QUANT_RESEARCH-ALGORITHMIC-0A1826?style=for-the-badge&logoColor=397E91&labelColor=060A0F" />&nbsp;
+  <img alt="Risk Modeling" src="https://img.shields.io/badge/RISK-PORTFOLIO_ANALYTICS-0A1826?style=for-the-badge&logoColor=35C8D5&labelColor=060A0F" />&nbsp;
+  <img alt="TypeScript" src="https://img.shields.io/badge/TYPESCRIPT-v5-0A1826?style=for-the-badge&logo=typescript&logoColor=3178C6&labelColor=060A0F" />
+</p>
 
-> **Quantitative research / backtesting.**
-
-SIXSHARP is a quantitative research and backtesting platform built around a core principle: execution assumptions should be visible instead of hidden behind a headline return.
-
-## WHAT IT EXPLORES
-
-- Multi-asset market data for research workflows
-- SMA/EMA, momentum and mean-reversion strategy experiments
-- Returns, volatility, Sharpe ratio, drawdown and correlation analysis
-- Transaction-cost, slippage, position-sizing and execution assumptions
-- An AI research interface behind a server-side API boundary
-
-Read [the architecture](architecture_structure.md) and [the feature matrix](hackathon-matrix.md) for the intended system boundaries and implementation map. Treat strategy results as research estimates, not investment advice or a guarantee of future returns.
-
-## ARCHITECTURE
-
-The repository separates a React/Vite client from a Node/Express API. The client runs on port 5173 and proxies `/api` to the API server on port 3001 during local development. The server loads its private configuration from the repository-root `.env`.
-
-## RUN LOCALLY
-
-Requirements: Node.js and npm. Use **two terminals** from the repository root.
-
-First, configure the server:
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` and provide the credentials you actually need for the integrations you intend to test. Never put these server-only values in client environment variables.
-
-**Terminal 1 — API server**
-
-```bash
-npm ci --prefix server
-npm run dev --prefix server
-```
-
-**Terminal 2 — web client**
-
-```bash
-cp client/.env.example client/.env.local
-npm ci --prefix client
-npm run dev --prefix client
-```
-
-Open `http://localhost:5173`. For a production client build, run `npm run build --prefix client`. For client linting, run `npm run lint --prefix client`.
-
-## ENVIRONMENT AND SECURITY
-
-- Root `.env.example` is for the server only. It includes placeholders for provider credentials and the Supabase service-role key.
-- `client/.env.example` contains browser-facing variables. Any `VITE_*` value is visible in the built client and must never contain a service-role key, password or private provider token.
-- Keep `.env` and `.env.local` files untracked. Test Supabase access control and RLS policies before using real data.
-
-## PROJECT STATE
-
-**React · TypeScript · Vite · Node.js · Express · Supabase · Lightweight Charts · Recharts · Playwright**
-
-The repository distinguishes implemented behaviour from planned integrations. Run the build and relevant tests against the current commit before relying on a feature.
+<p align="center">
+  <b>Don't just make the interface look finished. Make the system make sense.</b><br/>
+  <em>Multi-asset quantitative research workbench: deterministic backtesting, slippage modeling, position sizing, and drawdown telemetry.</em>
+</p>
 
 ---
-Maintained by [K. Kishor Kumar](https://github.com/Kishordiu).
+
+## 📈 Core Capabilities
+
+Sixsharp equips quantitative developers and algorithmic traders with verifiable execution assumptions:
+
+- **Deterministic Backtesting** — Realistic historical simulation modeling exchange latency, fees, and market impact.
+- **Dynamic Position Sizing** — Kelly criterion, volatility targeting, and risk parity portfolio allocation engines.
+- **Drawdown & VaR Telemetry** — Value-at-Risk (VaR), Sharpe / Sortino ratio metrics, and maximum adverse excursion inspection.
+- **Strategy Visualizer** — Interactive equity curve inspection with multi-asset comparative overlays.
+
+---
+
+## 🛠️ Architecture & Engine
+
+```text
+[ MARKET DATA INGESTION ] ──► [ STRATEGY ENGINE ] ──► [ SLIPPAGE MODEL ]
+                                                            │
+                                                            ▼
+[ PERFORMANCE DASHBOARD ] ◄── [ RISK ANALYTICS ] ◄── [ ORDER SIMULATOR ]
+```
+
+- **Stack**: React, TypeScript, Tailwind CSS, Vite
+- **Analytics Core**: Mathematical vectorized computation, statistical risk distribution
+- **Design System**: Slate clay surfaces, ocean-glass telemetry cards, Instrument Serif, JetBrains Mono
+
+---
+
+## ⚡ Quickstart
+
+```bash
+# Clone the repository
+git clone https://github.com/Kishordiu/sixsharp.git
+cd sixsharp
+
+# Install dependencies
+bun install
+
+# Run the quantitative research workbench
+bun run dev
+```
+
+---
+
+<p align="center">
+  <b>RESEARCH → BUILD → TEST → SHIP</b><br/>
+  <sub>A digital product by <a href="https://diufoundry.online">DIU Foundry</a> · Engineered by K. Kishor Kumar</sub>
+</p>
