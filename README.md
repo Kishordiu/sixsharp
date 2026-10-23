@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/hero-banner.svg" alt="SIXSHARP — Quantitative Research & Backtesting" width="100%" />
+  <img src="./assets/hero.png" alt="SIXSHARP — Quantitative Research & Backtesting" width="100%" />
 </div>
 
 <p align="center">
