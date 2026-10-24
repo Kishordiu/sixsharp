@@ -2,6 +2,8 @@
   <img src="./assets/hero.png" alt="SIXSHARP — Quantitative Research & Backtesting" width="100%" />
 </div>
 
+# SIXSHARP
+
 <p align="center">
   <a href="https://diufoundry.online"><img alt="DIU Foundry" src="https://img.shields.io/badge/DIU_FOUNDRY-STUDIO-0A1826?style=for-the-badge&logoColor=6BC6CE&labelColor=060A0F" /></a>&nbsp;
   <img alt="Quantitative Research" src="https://img.shields.io/badge/QUANT_RESEARCH-ALGORITHMIC-0A1826?style=for-the-badge&logoColor=397E91&labelColor=060A0F" />&nbsp;
