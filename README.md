@@ -16,7 +16,9 @@
 
 ---
 
-## 📈 Core Capabilities\n\n> **Research prototype:** Performance metrics and strategy results depend on the input data, model assumptions, fees, and slippage settings. Backtests do not predict future returns. This is not investment advice and should not be treated as a live-trading or execution platform unless such integrations are separately implemented and verified.
+## 📈 Core Capabilities
+
+> **Research prototype:** Performance metrics and strategy results depend on the input data, model assumptions, fees, and slippage settings. Backtests do not predict future returns. This is not investment advice and should not be treated as a live-trading or execution platform unless such integrations are separately implemented and verified.
 
 Sixsharp equips quantitative developers and algorithmic traders with verifiable execution assumptions:
 
